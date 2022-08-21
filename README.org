@@ -1,0 +1,34 @@
+* trivial-file-watch
+
+Common Lisp library for watching files. 
+
+For now only supports Linux via ~inotify~, and only file modification events.
+
+** Usage
+
+Start the file watch thread:
+
+#+begin_src lisp
+(file-watch:start)
+#+end_src
+
+Add an entry to watch for modifications:
+
+#+begin_src lisp
+(file-watch:add-entry "/path/to/file.txt"
+                      (lambda (entry)
+                        (format t "File at ~A changed~%"
+                                (file-watch:watch-entry-path entry))))
+#+end_src
+
+Remove an entry:
+
+#+begin_src lisp
+(file-watch:remove-entry "/path/to/file.txt")
+#+end_src
+
+Stop the file watch thread:
+
+#+begin_src lisp
+(file-watch:stop)
+#+end_src
