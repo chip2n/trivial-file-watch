@@ -32,9 +32,13 @@
 
                           ;; Handle each modified file
                           (loop for queued-event in queued-events
-                                do (let ((entry (gethash (cl-inotify:inotify-event-wd event) *entries*)))
+                                do (let ((filename (cl-inotify:inotify-event-name event))
+                                         (entry (gethash (cl-inotify:inotify-event-wd event) *entries*)))
                                      (when entry
-                                       (funcall (watch-entry-handler entry) entry))))
+                                       (funcall (watch-entry-handler entry)
+                                                (if filename
+                                                    (fad:merge-pathnames-as-file (watch-entry-path entry) filename)
+                                                    (watch-entry-path entry))))))
 
                           ;; In case the watch entries log stuff, we'll finish
                           ;; output after processing the events

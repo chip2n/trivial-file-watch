@@ -16,9 +16,8 @@ Add an entry to watch for modifications:
 
 #+begin_src lisp
 (file-watch:add-entry "/path/to/file.txt"
-                      (lambda (entry)
-                        (format t "File at ~A changed~%"
-                                (file-watch:watch-entry-path entry))))
+                      (lambda (path)
+                        (format t "File at ~A changed~%" path)))
 #+end_src
 
 Remove an entry:

@@ -3,9 +3,6 @@
   (:use #:cl)
   (:export
    #:*current-thread*
-   #:watch-entry
-   #:watch-entry-path
-   #:watch-entry-handler
    #:start
    #:stop
    #:add-entry

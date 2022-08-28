@@ -5,6 +5,7 @@
   :version "0.0.1"
   :serial t
   :depends-on (#:bt-semaphore
-               #:cl-inotify)
+               #:cl-inotify
+               #:cl-fad)
   :components ((:file "package")
                (:file "trivial-file-watch")))
